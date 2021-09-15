@@ -20,3 +20,28 @@ def kv(s):
 """
 
 
+def make_readable(sec):
+    h = 0
+    m = 0
+    s = 0
+    min = m
+    if sec // 60 >= 1:
+        m += int(sec / 60)
+        s += int(sec % 60)
+        min += m
+    else:
+        s += sec
+    if min // 60 >= 1:
+        h += int(m / 60)
+        m = min - h * 60
+    return f"{h}:{m}:{s}"
+
+
+print(make_readable(0))
+print(make_readable(5))
+print(make_readable(60))
+print(make_readable(86399))
+print(make_readable(359999))
+
+n = int(input('введи число: '))
+print(make_readable(n))
