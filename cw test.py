@@ -20,21 +20,30 @@ def kv(s):
 """
 
 
-def make_readable(sec):
+def make_readable(seconds):
     h = 0
     m = 0
     s = 0
     min = m
-    if sec // 60 >= 1:
-        m += int(sec / 60)
-        s += int(sec % 60)
+    if seconds // 60 >= 1:
+        m += int(seconds / 60)
+        s += int(seconds % 60)
         min += m
     else:
-        s += sec
+        s += seconds
     if min // 60 >= 1:
         h += int(m / 60)
         m = min - h * 60
-    return f"{h}:{m}:{s}"
+    sec = str(s)
+    min = str(m)
+    hour = str(h)
+    if len(sec) < 2:
+        sec = '0' + sec
+    if len(min) < 2:
+        min = '0' + min
+    if len(hour) < 2:
+        hour = '0' + hour
+    return f"{hour}:{min}:{sec}"
 
 
 print(make_readable(0))
